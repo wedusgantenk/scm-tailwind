@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Warehouse;
+use App\Models\Cluster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class WarehouseController extends Controller
+class ClusterController extends Controller
 {
     public function index()
     {
-        $data = Warehouse::orderBy('nama', 'asc')->get();
+        $data = Cluster::orderBy('nama', 'asc')->get();
         return response()->json([
             'status' => true,
-            'message' => 'Data Warehouse Ditemukan',
+            'message' => 'Data cluster Ditemukan',
             'data' => $data
         ], 200);
         
@@ -39,7 +39,7 @@ class WarehouseController extends Controller
     public function store(Request $request)
     {
 
-        $dataWarehouse = new Warehouse;
+        $dataCluster = new Cluster;
 
         $rules = [
             'nama' => 'required',
@@ -50,20 +50,20 @@ class WarehouseController extends Controller
         if($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal memasukkan data Warehouse',
+                'message' => 'Gagal memasukkan data Cluster',
                 'data' => $validator->errors()
             ]);
         }
 
-        $dataWarehouse->nama = $request->nama;
-        $dataWarehouse->alamat = $request->alamat;
+        $dataCluster->nama = $request->nama;
+        $dataCluster->alamat = $request->alamat;
         
 
-        $post = $dataWarehouse->save();
+        $post = $dataCluster->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses memasukkan data Warehouse'
+            'message' => 'Sukses memasukkan data Cluster'
         ]);
     }
 
@@ -75,18 +75,18 @@ class WarehouseController extends Controller
      */
     public function show($id)
     {
-        $data = Warehouse::find($id);
+        $data = Cluster::find($id);
 
         if($data) {
             return response()->json([
                 'status' => true,
-                'message' => 'Data Warehouse ditemukan',
+                'message' => 'Data Cluster ditemukan',
                 'data' => $data
             ], 200);
         } else{
             return response()->json([
                 'status' => false,
-                'message' => 'Data Warehouse tidak ditemukan'
+                'message' => 'Data Cluster tidak ditemukan'
             ]);
         }
     }
@@ -112,12 +112,12 @@ class WarehouseController extends Controller
     public function update(Request $request, $id)
     {
 
-        $dataWarehouse = Warehouse::find($id);
+        $dataCluster = Cluster::find($id);
 
-        if(empty($dataWarehouse)){
+        if(empty($dataCluster)){
             return response()->json([
                 'status' => false,
-                'message' => 'Data Warehouse tidak ditemukan'
+                'message' => 'Data Cluster tidak ditemukan'
             ], 404);
         }
 
@@ -131,19 +131,19 @@ class WarehouseController extends Controller
         if($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal melakukan UPDATE data Warehouse',
+                'message' => 'Gagal melakukan UPDATE data Cluster',
                 'data' => $validator->errors()
             ]);
         }
 
-        $dataWarehouse->nama = $request->nama;
-        $dataWarehouse->alamat = $request->alamat;
+        $dataCluster->nama = $request->nama;
+        $dataCluster->alamat = $request->alamat;
 
-        $post = $dataWarehouse->save();
+        $post = $dataCluster->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses melakukan UPDATE data Warehouse'
+            'message' => 'Sukses melakukan UPDATE data Cluster'
         ]);
     }
 
@@ -155,20 +155,20 @@ class WarehouseController extends Controller
      */
     public function destroy($id)
     {
-        $dataWarehouse = Warehouse::find($id);
+        $dataCluster = Cluster::find($id);
 
-        if(empty($dataWarehouse)){
+        if(empty($dataCluster)){
             return response()->json([
                 'status' => false,
-                'message' => 'Data Warehouse tidak ditemukan'
+                'message' => 'Data Cluster tidak ditemukan'
             ], 404);
         }
 
-        $post = $dataWarehouse->delete();
+        $post = $dataCluster->delete();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses melakukan DELETE data Warehouse'
+            'message' => 'Sukses melakukan DELETE data Cluster'
         ]);
     }
 }

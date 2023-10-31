@@ -47,12 +47,12 @@ Route::get('bts/edit/{id}', [App\Http\Controllers\Admin\BtsController::class, 'e
 Route::patch('bts/edit/{id}/update', [App\Http\Controllers\Admin\BtsController::class, 'update'])->name('admin.bts.update')->middleware(['checkRole:admin']);
 Route::get('bts/delete/{id}', [App\Http\Controllers\Admin\BtsController::class, 'destroy'])->name('admin.bts.delete')->middleware(['checkRole:admin']);
 
-Route::get('warehouse', [App\Http\Controllers\Admin\WarehouseController::class, 'index'])->name('admin.warehouse')->middleware(['checkRole:admin']);
-Route::get('warehouse/create', [App\Http\Controllers\Admin\WarehouseController::class, 'create'])->name('admin.warehouse.create')->middleware(['checkRole:admin']);
-Route::post('warehouse/create', [App\Http\Controllers\Admin\WarehouseController::class, 'store'])->name('admin.warehouse.store')->middleware(['checkRole:admin']);
-Route::get('warehouse/edit/{id}', [App\Http\Controllers\Admin\WarehouseController::class, 'edit'])->name('admin.warehouse.edit')->middleware(['checkRole:admin']);
-Route::patch('warehouse/edit/{id}/update', [App\Http\Controllers\Admin\WarehouseController::class, 'update'])->name('admin.warehouse.update')->middleware(['checkRole:admin']);
-Route::get('warehouse/delete/{id}', [App\Http\Controllers\Admin\WarehouseController::class, 'destroy'])->name('admin.warehouse.delete')->middleware(['checkRole:admin']);
+Route::get('cluster', [App\Http\Controllers\Admin\ClusterController::class, 'index'])->name('admin.cluster')->middleware(['checkRole:admin']);
+Route::get('cluster/create', [App\Http\Controllers\Admin\ClusterController::class, 'create'])->name('admin.cluster.create')->middleware(['checkRole:admin']);
+Route::post('cluster/create', [App\Http\Controllers\Admin\ClusterController::class, 'store'])->name('admin.cluster.store')->middleware(['checkRole:admin']);
+Route::get('cluster/edit/{id}', [App\Http\Controllers\Admin\ClusterController::class, 'edit'])->name('admin.cluster.edit')->middleware(['checkRole:admin']);
+Route::patch('cluster/edit/{id}/update', [App\Http\Controllers\Admin\ClusterController::class, 'update'])->name('admin.cluster.update')->middleware(['checkRole:admin']);
+Route::get('cluster/delete/{id}', [App\Http\Controllers\Admin\ClusterController::class, 'destroy'])->name('admin.cluster.delete')->middleware(['checkRole:admin']);
 
 Route::get('cabang', [App\Http\Controllers\Admin\CabangController::class, 'index'])->name('admin.cabang')->middleware(['checkRole:admin']);
 Route::get('cabang/create', [App\Http\Controllers\Admin\CabangController::class, 'create'])->name('admin.cabang.create')->middleware(['checkRole:admin']);

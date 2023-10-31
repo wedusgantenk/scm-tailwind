@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Warehouse extends Model
+class Cluster extends Model
 {
     use HasFactory;
-    protected $table = "warehouse";
+    protected $table = "cluster";
     protected $fillable = [
         'id',
         'nama',
