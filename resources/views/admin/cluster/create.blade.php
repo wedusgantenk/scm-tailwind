@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('title')
-    Tambah Warehouse
+    Tambah Cluster
 @endsection
 
 @section('content')
