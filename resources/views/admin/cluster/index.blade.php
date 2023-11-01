@@ -23,7 +23,7 @@
             <table class="px-6 py-3 table-auto items-center w-full mb-0 align-top border-transparent border-gray-200 text-slate-600">
               <thead class="align-bottom">
                 <tr>
-                  <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Nomor</th>
+                  <th class="font-bold text-center uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Nomor</th>
                   <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Nama</th>
                   <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Aksi</th>
                 </tr>
@@ -31,7 +31,7 @@
               <tbody class="px-6 py-3 font-semibold text-left text-xs border-spacing-4">
                 @forelse ($data as $d)
                   <tr>                                
-                    <td class="w-16"> {{ $loop->iteration }} </td>
+                    <td class="w-16 text-center"> {{ $loop->iteration }} </td>
                     <td> {{ $d->nama }} </td>                                
                     <td>
                       <a href="{{ route('admin.cluster.edit', $d->id) }}"
