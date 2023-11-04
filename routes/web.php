@@ -53,6 +53,10 @@ Route::post('cluster/create', [App\Http\Controllers\Admin\ClusterController::cla
 Route::get('cluster/edit/{id}', [App\Http\Controllers\Admin\ClusterController::class, 'edit'])->name('admin.cluster.edit')->middleware(['checkRole:admin']);
 Route::patch('cluster/edit/{id}/update', [App\Http\Controllers\Admin\ClusterController::class, 'update'])->name('admin.cluster.update')->middleware(['checkRole:admin']);
 Route::get('cluster/delete/{id}', [App\Http\Controllers\Admin\ClusterController::class, 'destroy'])->name('admin.cluster.delete')->middleware(['checkRole:admin']);
+Route::get('cluster/export',[App\Http\Controllers\Admin\ClusterController::class, 'export'])->name('admin.cluster.export')->middleware(['checkRole:admin']);
+Route::get('cluster/import', [App\Http\Controllers\Admin\ClusterController::class, 'import'])->name('admin.cluster.import')->middleware(['checkRole:admin']);
+Route::post('cluster/import', [App\Http\Controllers\Admin\ClusterController::class, 'import'])->name('admin.cluster.import')->middleware(['checkRole:admin']);
+
 
 Route::get('cabang', [App\Http\Controllers\Admin\CabangController::class, 'index'])->name('admin.cabang')->middleware(['checkRole:admin']);
 Route::get('cabang/create', [App\Http\Controllers\Admin\CabangController::class, 'create'])->name('admin.cabang.create')->middleware(['checkRole:admin']);
@@ -104,6 +108,7 @@ Route::patch('barangmasuk/edit/{id}/update', [App\Http\Controllers\Admin\BarangM
 Route::get('barangmasuk/delete/{id}', [App\Http\Controllers\Admin\BarangMasukController::class, 'destroy'])->name('admin.barang_masuk.delete')->middleware(['checkRole:admin']);
 Route::get('barangmasuk/import', [App\Http\Controllers\Admin\BarangMasukController::class, 'import'])->name('admin.barang_masuk.import')->middleware(['checkRole:admin']);
 Route::post('barangmasuk/import', [App\Http\Controllers\Admin\BarangMasukController::class, 'import_excel'])->name('admin.barang_masuk.import_excel')->middleware(['checkRole:admin']);
+Route::get('barangmasuk/export',[App\Http\Controllers\Admin\BarangMasukController::class, 'export'])->name('admin.barang_masuk.export')->middleware(['checkRole:admin']);
 
 
 Route::get('hargabarang', [App\Http\Controllers\Admin\HargaBarangController::class, 'index'])->name('admin.harga_barang')->middleware(['checkRole:admin']);

@@ -14,9 +14,11 @@
         <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
           <h6>Cluster</h6>
         </div>
-        <div class="flex flex-auto pl-6 py-2">
-          <button class="py-1 px-2 rounded-lg bg-slate-500 hover:bg-slate-700 text-white text-xs font-semibold drop-shadow-xl"  >
-            <a href="{{ route('admin.cluster.create')}}">Tambah</a></button>
+        <div class="flex flex-auto pl-6 py-2 col-md-4">
+          <button class="py-1 px-2 mt-4 rounded-lg bg-slate-500 hover:bg-slate-700 text-white text-xs font-semibold drop-shadow-xl"  >
+            <a href="{{ route('admin.cluster.create')}}">Tambah</a>
+            <a href="{{ route('admin.cluster.export') }}" class="btn btn-outline-info mt-4">Export Excel</a></button>
+            <a href="{{ route('admin.cluster.import') }}" class="btn btn-outline-info mt-4">Import Excel</a></button>
         </div>
         <div class="flex-auto px-0 pt-0 pb-2">
           <div class="p-0 overflow-x-auto">

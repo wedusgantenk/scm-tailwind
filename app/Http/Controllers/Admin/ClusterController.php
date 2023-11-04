@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cluster;
 use Illuminate\Http\Request;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class ClusterController extends Controller
 {
@@ -77,5 +78,27 @@ class ClusterController extends Controller
     {
         cluster::find($id)->delete();
         return redirect()->route('admin.cluster')->with('success', 'cluster telah dihapus');
+    }
+
+    public function export()
+    {
+        $file = time() . 'data-warehouse.xlsx';
+        return (new FastExcel(Cluster::all()))->download($file, function ($cluster) {
+            return [
+            'nama' => $cluster->nama,
+            'alamat' => $cluster->alamat,
+            ];
+        });
+    }
+
+    public function import()
+    {
+        $clusters = (new FastExcel)->import('file.xlsx', function ($line){
+        return Cluster::create([
+            'nama' => $line['nama'],
+            'alamat' => $line['alamat'],
+            ]);
+        });
+
     }
 }

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Facades\Excel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class BarangMasukController extends Controller
 {
@@ -111,47 +112,18 @@ class BarangMasukController extends Controller
         return view('admin.barang_masuk.import');
     }
 
-    public function import_excel(Request $request)
+    public function export()
     {
-        // validasi
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
-
-        // menangkap file excel
-        $file = $request->file('file');
-
-        // membuat nama file unik
-        $nama_file = rand() ."_".$file->getClientOriginalName();
-
-        // upload ke folder file barang di dalam folder public
-        $file->move('file_barang', $nama_file);
-
-        // import data
-        $data = Excel::toCollection(new BarangMasukImport, public_path('/file_barang/' . $nama_file));        
-        // return response()->json(["data" => $data_barang]);
-
-        foreach ($data as $dat) {
-            foreach ($dat as $d) {
-                $data_barang = Barang::firstOrCreate([
-                    'id_jenis' => 1,
-                    'nama' => $d['item_name'],
-                    'keterangan' => 'isi deskripsi produk',
-                    'fisik' => 1,
-                ]);
-                $data_detail_barang = DetailBarang::firstOrCreate([
-                    'id_barang'=>$data_barang['id'],
-                    'kode_unik'=>$d['iccid'],                    
-                ]);
-                $data_barang_masuk = BarangMasuk::firstOrCreate([
-                    'id_produk' => $data_barang['id'],
-                    'id_petugas' => Auth::user()->id,
-                    'tanggal' => $d['tgl_good_receive'],
-                ]);                
-            }
-        }    
-
-        // alihkan halaman kembali		
-        return redirect()->route('admin.barang_masuk')->with('success', 'barang masuk telah ditambahkan');
+        $file = time() . '-Data Excell.xlsx';
+        return (new FastExcel(BarangMasuk::all()))->download($file, function ($barangmasuk) {
+            return [
+            'nama' => $barangmasuk->nama,
+            'alamat' => $barangmasuk->alamat,
+            'id_jenis' => $barangmasuk->id_jenis,
+            'fisik' => $barangmasuk->has('fisik'),
+            'keterangan' => $barangmasuk->keterangan,
+            ];
+        });
     }
+    
 }
