@@ -7,7 +7,7 @@
           <li class="leading-normal text-sm">
             <a class="opacity-50 text-slate-700" href="{{route('index')}}">Dashboard</a>
           </li>
-          <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']" aria-current="page">Da</li>
+          <li class="text-sm pl-2 capitalize leading-normal text-slate-700 before:float-left before:pr-2 before:text-gray-600 before:content-['/']" aria-current="page">@yield('title')</li>
         </ol>
       </nav>
 

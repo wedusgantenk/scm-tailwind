@@ -58,12 +58,12 @@ Route::get('cluster/import', [App\Http\Controllers\Admin\ClusterController::clas
 Route::post('cluster/import', [App\Http\Controllers\Admin\ClusterController::class, 'import'])->name('admin.cluster.import')->middleware(['checkRole:admin']);
 
 
-Route::get('cabang', [App\Http\Controllers\Admin\CabangController::class, 'index'])->name('admin.cabang')->middleware(['checkRole:admin']);
-Route::get('cabang/create', [App\Http\Controllers\Admin\CabangController::class, 'create'])->name('admin.cabang.create')->middleware(['checkRole:admin']);
-Route::post('cabang/create', [App\Http\Controllers\Admin\CabangController::class, 'store'])->name('admin.cabang.store')->middleware(['checkRole:admin']);
-Route::get('cabang/edit/{id}', [App\Http\Controllers\Admin\CabangController::class, 'edit'])->name('admin.cabang.edit')->middleware(['checkRole:admin']);
-Route::patch('cabang/edit/{id}/update', [App\Http\Controllers\Admin\CabangController::class, 'update'])->name('admin.cabang.update')->middleware(['checkRole:admin']);
-Route::get('cabang/delete/{id}', [App\Http\Controllers\Admin\CabangController::class, 'destroy'])->name('admin.cabang.delete')->middleware(['checkRole:admin']);
+Route::get('depo', [App\Http\Controllers\Admin\DepoController::class, 'index'])->name('admin.depo')->middleware(['checkRole:admin']);
+Route::get('depo/create', [App\Http\Controllers\Admin\DepoController::class, 'create'])->name('admin.depo.create')->middleware(['checkRole:admin']);
+Route::post('depo/create', [App\Http\Controllers\Admin\DepoController::class, 'store'])->name('admin.depo.store')->middleware(['checkRole:admin']);
+Route::get('depo/edit/{id}', [App\Http\Controllers\Admin\DepoController::class, 'edit'])->name('admin.depo.edit')->middleware(['checkRole:admin']);
+Route::patch('depo/edit/{id}/update', [App\Http\Controllers\Admin\DepoController::class, 'update'])->name('admin.depo.update')->middleware(['checkRole:admin']);
+Route::get('depo/delete/{id}', [App\Http\Controllers\Admin\DepoController::class, 'destroy'])->name('admin.depo.delete')->middleware(['checkRole:admin']);
 
 Route::get('transaksi/distribusi_cabang', [App\Http\Controllers\Admin\TransaksiCabangController::class, 'index'])->name('admin.transaksi.distribusi_cabang')->middleware(['checkRole:admin']);
 Route::get('transaksi/distribusi_cabang/create', [App\Http\Controllers\Admin\TransaksiCabangController::class, 'create'])->name('admin.transaksi.distribusi_cabang.create')->middleware(['checkRole:admin']);

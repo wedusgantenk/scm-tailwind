@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Cabang;
-use App\Models\Warehouse;
+use App\Models\Depo;
+use App\Models\Cluster;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class CabangController extends Controller
+class DepoController extends Controller
 {
     // public function index() // testing 1 tanpa join
     // {
-    //     $data = Cabang::orderBy('id_warehouse', 'asc')->get();
+    //     $data = Depo::orderBy('id_cluster', 'asc')->get();
     //     return response()->json([
     //         'status' => true,
-    //         'message' => 'Data Cabang Ditemukan',
+    //         'message' => 'Data Depo Ditemukan',
     //         'data' => $data
     //     ], 200);
         
@@ -23,28 +23,28 @@ class CabangController extends Controller
 
 //     public function index() //testing 2
 // {
-//     $data = Cabang::join('warehouse', 'warehouse.id', '=', 'cabang.id_warehouse')
-//         ->select('cabang.*', 'warehouse.nama as warehouse_nama')
-//         ->orderBy('cabang.id_warehouse', 'asc')
+//     $data = Depo::join('cluster', 'cluster.id', '=', 'Depo.id_cluster')
+//         ->select('Depo.*', 'cluster.nama as cluster_nama')
+//         ->orderBy('Depo.id_cluster', 'asc')
 //         ->get();
 
 //     return response()->json([
 //         'status' => true,
-//         'message' => 'Data Cabang Ditemukan dengan Informasi Warehouse',
+//         'message' => 'Data Depo Ditemukan dengan Informasi cluster',
 //         'data' => $data
 //     ], 200);
 // }
 
 public function index()
 {
-    $data = Cabang::leftJoin('warehouse', 'warehouse.id', '=', 'cabang.id_warehouse')
-        ->select('cabang.id', 'cabang.nama', 'cabang.alamat', 'warehouse.nama as nama_warehouse')
-        ->orderBy('cabang.id', 'asc')
+    $data = Depo::leftJoin('cluster', 'cluster.id', '=', 'depo.id_cluster')
+        ->select('Depo.id', 'Depo.nama', 'Depo.alamat', 'cluster.nama as nama_cluster')
+        ->orderBy('Depo.id', 'asc')
         ->get();
 
     return response()->json([
         'status' => true,
-        'message' => 'Data Cabang Ditemukan dengan Informasi Warehouse',
+        'message' => 'Data Depo Ditemukan dengan Informasi cluster',
         'data' => $data
     ], 200);
 }
@@ -68,40 +68,40 @@ public function index()
     public function store(Request $request)
     {
 
-        // $lastWarehouse = Warehouse::latest()->first();
-        // if ($lastWarehouse) {
-        // $warehouseId = $lastWarehouse->id;
+        // $lastcluster = cluster::latest()->first();
+        // if ($lastcluster) {
+        // $clusterId = $lastcluster->id;
         // } else {
         //     return "";
         // }
 
-        $dataCabang = new Cabang;
+        $dataDepo = new Depo;
 
         $rules = [
             'nama' => 'required',
             'alamat' => 'required',
-            'id_warehouse' => 'required',
+            'id_cluster' => 'required',
         ];
 
         $validator = Validator::make($request->all(), $rules);
         if($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal memasukkan data Cabang',
+                'message' => 'Gagal memasukkan data Depo',
                 'data' => $validator->errors()
             ]);
         }
 
-        $dataCabang->nama = $request->nama;
-        $dataCabang->alamat = $request->alamat;
-        $dataCabang->id_warehouse = $request->id_warehouse;
+        $dataDepo->nama = $request->nama;
+        $dataDepo->alamat = $request->alamat;
+        $dataDepo->id_cluster = $request->id_cluster;
         
 
-        $post = $dataCabang->save();
+        $post = $dataDepo->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses memasukkan data Cabang'
+            'message' => 'Sukses memasukkan data Depo'
         ]);
     }
 
@@ -113,26 +113,26 @@ public function index()
      */
     public function show($id) // jika ingin BY id ganti dengan $id
     {
-        $data = Cabang::leftJoin('warehouse', 'warehouse.id', '=', 'cabang.id_warehouse')
-        ->select('cabang.id', 'cabang.nama', 'cabang.alamat', 'warehouse.nama as nama_warehouse')
-        ->orderBy('cabang.id', 'asc')
+        $data = Depo::leftJoin('cluster', 'cluster.id', '=', 'depo.id_cluster')
+        ->select('depo.id', 'depo.nama', 'depo.alamat', 'cluster.nama as nama_cluster')
+        ->orderBy('Depo.id', 'asc')
         ->find($id); // BY ID
 
-        // $data = Cabang::leftJoin('warehouse', 'warehouse.id', '=', 'cabang.id_warehouse')
-        // ->select('cabang.id', 'cabang.nama', 'cabang.alamat', 'warehouse.nama as nama_warehouse')
-        // ->where('cabang.nama', $namaCabang)
+        // $data = Depo::leftJoin('cluster', 'cluster.id', '=', 'Depo.id_cluster')
+        // ->select('Depo.id', 'Depo.nama', 'Depo.alamat', 'cluster.nama as nama_cluster')
+        // ->where('Depo.nama', $namaDepo)
         // ->first(); // BY NAMA
 
         if($data) {
             return response()->json([
                 'status' => true,
-                'message' => 'Data Cabang ditemukan',
+                'message' => 'Data Depo ditemukan',
                 'data' => $data
             ], 200);
         } else{
             return response()->json([
                 'status' => false,
-                'message' => 'Data Cabang tidak ditemukan'
+                'message' => 'Data Depo tidak ditemukan'
             ]);
         }
     }
@@ -158,15 +158,15 @@ public function index()
     public function update(Request $request, $id)
     {
 
-        $dataCabang = Cabang::leftJoin('warehouse', 'warehouse.id', '=', 'cabang.id_warehouse')
-        ->select('cabang.id', 'cabang.nama', 'cabang.alamat', 'warehouse.nama as nama_warehouse')
-        ->orderBy('cabang.id', 'asc')
+        $dataDepo = Depo::leftJoin('cluster', 'cluster.id', '=', 'Depo.id_cluster')
+        ->select('Depo.id', 'Depo.nama', 'Depo.alamat', 'cluster.nama as nama_cluster')
+        ->orderBy('Depo.id', 'asc')
         ->find($id);
 
-        if(empty($dataCabang)){
+        if(empty($dataDepo)){
             return response()->json([
                 'status' => false,
-                'message' => 'Data Cabang tidak ditemukan'
+                'message' => 'Data Depo tidak ditemukan'
             ], 404);
         }
 
@@ -181,21 +181,21 @@ public function index()
         if($validator->fails()) {
             return response()->json([
                 'status' => false,
-                'message' => 'Gagal melakukan UPDATE data Cabang',
+                'message' => 'Gagal melakukan UPDATE data Depo',
                 'data' => $validator->errors()
             ]);
         }
 
-        $dataCabang->nama = $request->nama;
-        $dataCabang->alamat = $request->alamat;
-        $dataCabang->id_warehouse = $request->id_warehouse;
-        // $dataCabang->id_warehouse = $warehouseId;
+        $dataDepo->nama = $request->nama;
+        $dataDepo->alamat = $request->alamat;
+        $dataDepo->id_cluster = $request->id_cluster;
+        // $dataDepo->id_cluster = $clusterId;
 
-        $post = $dataCabang->save();
+        $post = $dataDepo->save();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses melakukan UPDATE data Cabang'
+            'message' => 'Sukses melakukan UPDATE data Depo'
         ]);
     }
 
@@ -207,20 +207,20 @@ public function index()
      */
     public function destroy($id)
     {
-        $dataCabang = Cabang::find($id);
+        $dataDepo = Depo::find($id);
 
-        if(empty($dataCabang)){
+        if(empty($dataDepo)){
             return response()->json([
                 'status' => false,
-                'message' => 'Data Cabang tidak ditemukan'
+                'message' => 'Data Depo tidak ditemukan'
             ], 404);
         }
 
-        $post = $dataCabang->delete();
+        $post = $dataDepo->delete();
 
         return response()->json([
             'status' => true,
-            'message' => 'Sukses melakukan DELETE data Cabang'
+            'message' => 'Sukses melakukan DELETE data Depo'
         ]);
     }
 }
