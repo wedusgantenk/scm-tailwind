@@ -8,6 +8,7 @@ use App\Models\Barang;
 use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Rap2hpoutre\FastExcel\Facades\FastExcel;
 
 class BarangController extends Controller
 {
@@ -129,4 +130,18 @@ class BarangController extends Controller
 		// alihkan halaman kembali		
         return redirect()->route('admin.barang')->with('success', 'barang telah ditambahkan');
 	}
+
+    public function export()
+    {
+        $file = time() . 'data-barang.xlsx';
+        return (new FastExcel(Barang::all()))->download($file, function ($barang) {
+            return [
+            'nama' => $barang->nama,
+            'alamat' => $barang->alamat,
+            'id_jenis' => $barang->id_jenis,
+            'fisik' => $barang->fisik,
+            'keterangan' => $barang->keterangan
+            ];
+        });
+    }
 }

@@ -39,6 +39,8 @@ Route::patch('barang/edit/{id}/update', [App\Http\Controllers\Admin\BarangContro
 Route::get('barang/delete/{id}', [App\Http\Controllers\Admin\BarangController::class, 'destroy'])->name('admin.barang.delete')->middleware(['checkRole:admin']);
 Route::get('barang/import', [App\Http\Controllers\Admin\BarangController::class, 'import'])->name('admin.barang.import')->middleware(['checkRole:admin']);
 Route::post('barang/import', [App\Http\Controllers\Admin\BarangController::class, 'import_excel'])->name('admin.barang.import_excel')->middleware(['checkRole:admin']);
+Route::get('barang/export',[App\Http\Controllers\Admin\BarangController::class, 'export'])->name('admin.barang.export')->middleware(['checkRole:admin']);
+
 
 Route::get('bts', [App\Http\Controllers\Admin\BtsController::class, 'index'])->name('admin.bts')->middleware(['checkRole:admin']);
 Route::get('bts/create', [App\Http\Controllers\Admin\BtsController::class, 'create'])->name('admin.bts.create')->middleware(['checkRole:admin']);
