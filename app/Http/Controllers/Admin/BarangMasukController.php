@@ -125,5 +125,54 @@ class BarangMasukController extends Controller
             ];
         });
     }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() ."_".$file->getClientOriginalName();
+
+        // upload ke folder file barang di dalam folder public
+        $file->move('file_barang', $nama_file);
+
+        // import data
+        $data = Excel::toCollection(new BarangMasukImport, public_path('/file_barang/' . $nama_file));        
+        // return response()->json(["data" => $data_barang]);
+
+        foreach ($data as $dat) {
+            foreach ($dat as $d) {
+                $kode_cluster = strtolower(explode('_', $d['gudang'])[1]);
+
+                $data_barang = Barang::firstOrCreate([
+                    'id_jenis' => 1,
+                    'nama' => $d['item_name'],
+                    'keterangan' => 'isi deskripsi produk',
+                    'fisik' => 1,
+                ]);
+                $data_detail_barang = DetailBarang::firstOrCreate([
+                    'id_barang'=>$data_barang['id'],
+                    'kode_unik'=>$d['iccid'],                    
+                ]);
+                $data_barang_masuk = BarangMasuk::firstOrCreate([
+                    'id_produk' => $data_barang['id'],
+                    'id_petugas' => Auth::user()->id,
+                    'tanggal' => $d['tgl_good_receive'],
+                    'no_do' => $d['no_do'],
+                    'no_po' => $d['no_po'],
+                    'kode_cluster' => $kode_cluster
+                ]);                
+            }
+        }    
+
+        // alihkan halaman kembali		
+        return redirect()->route('admin.barang_masuk')->with('success', 'barang masuk telah ditambahkan');
+    }
     
 }
