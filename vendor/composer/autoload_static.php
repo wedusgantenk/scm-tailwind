@@ -10,8 +10,8 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
-        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
@@ -195,7 +195,6 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         ),
         'A' => 
         array (
-            'Asm89\\Stack\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -534,8 +533,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         ),
         'Fruitcake\\Cors\\' => 
         array (
-            0 => __DIR__ . '/..' . '/fruitcake/laravel-cors/src',
-            1 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
+            0 => __DIR__ . '/..' . '/fruitcake/php-cors/src',
         ),
         'Faker\\' => 
         array (
@@ -601,10 +599,6 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
         ),
-        'Asm89\\Stack\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/asm89/stack-cors/src',
-        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -637,6 +631,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Http\\Controllers\\Admin\\JenisOutletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/JenisOutletController.php',
         'App\\Http\\Controllers\\Admin\\OutletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OutletController.php',
         'App\\Http\\Controllers\\Admin\\PetugasController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PetugasController.php',
+        'App\\Http\\Controllers\\Admin\\SalesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SalesController.php',
         'App\\Http\\Controllers\\Admin\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SettingsController.php',
         'App\\Http\\Controllers\\Admin\\TransaksiCabangController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransaksiCabangController.php',
         'App\\Http\\Controllers\\Admin\\TransaksiSalesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransaksiSalesController.php',
@@ -678,6 +673,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Models\\JenisOutlet' => __DIR__ . '/../..' . '/app/Models/JenisOutlet.php',
         'App\\Models\\Outlet' => __DIR__ . '/../..' . '/app/Models/Outlet.php',
         'App\\Models\\Petugas' => __DIR__ . '/../..' . '/app/Models/Petugas.php',
+        'App\\Models\\Sales' => __DIR__ . '/../..' . '/app/Models/Sales.php',
         'App\\Models\\TransaksiCabang' => __DIR__ . '/../..' . '/app/Models/TransaksiCabang.php',
         'App\\Models\\TransaksiCabangDetail' => __DIR__ . '/../..' . '/app/Models/TransaksiCabangDetail.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
@@ -686,8 +682,6 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Cors.php',
-        'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/CorsService.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Brick\\Math\\BigDecimal' => __DIR__ . '/..' . '/brick/math/src/BigDecimal.php',
         'Brick\\Math\\BigInteger' => __DIR__ . '/..' . '/brick/math/src/BigInteger.php',
@@ -1534,9 +1528,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'Faker\\UniqueGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/UniqueGenerator.php',
         'Faker\\ValidGenerator' => __DIR__ . '/..' . '/fakerphp/faker/src/Faker/ValidGenerator.php',
         'Fruitcake\\Cors\\CorsService' => __DIR__ . '/..' . '/fruitcake/php-cors/src/CorsService.php',
-        'Fruitcake\\Cors\\CorsServiceProvider' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/CorsServiceProvider.php',
         'Fruitcake\\Cors\\Exceptions\\InvalidOptionException' => __DIR__ . '/..' . '/fruitcake/php-cors/src/Exceptions/InvalidOptionException.php',
-        'Fruitcake\\Cors\\HandleCors' => __DIR__ . '/..' . '/fruitcake/laravel-cors/src/HandleCors.php',
         'GrahamCampbell\\ResultType\\Error' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Error.php',
         'GrahamCampbell\\ResultType\\Result' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Result.php',
         'GrahamCampbell\\ResultType\\Success' => __DIR__ . '/..' . '/graham-campbell/result-type/src/Success.php',
