@@ -49,6 +49,8 @@ return array(
     'App\\Http\\Middleware\\TrustHosts' => $baseDir . '/app/Http/Middleware/TrustHosts.php',
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
+    'App\\Imports\\BarangImport' => $baseDir . '/app/Imports/BarangImport.php',
+    'App\\Imports\\BarangMasukImport' => $baseDir . '/app/Imports/BarangMasukImport.php',
     'App\\Models\\Barang' => $baseDir . '/app/Models/Barang.php',
     'App\\Models\\BarangMasuk' => $baseDir . '/app/Models/BarangMasuk.php',
     'App\\Models\\Bts' => $baseDir . '/app/Models/Bts.php',

@@ -665,6 +665,8 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Imports\\BarangImport' => __DIR__ . '/../..' . '/app/Imports/BarangImport.php',
+        'App\\Imports\\BarangMasukImport' => __DIR__ . '/../..' . '/app/Imports/BarangMasukImport.php',
         'App\\Models\\Barang' => __DIR__ . '/../..' . '/app/Models/Barang.php',
         'App\\Models\\BarangMasuk' => __DIR__ . '/../..' . '/app/Models/BarangMasuk.php',
         'App\\Models\\Bts' => __DIR__ . '/../..' . '/app/Models/Bts.php',
