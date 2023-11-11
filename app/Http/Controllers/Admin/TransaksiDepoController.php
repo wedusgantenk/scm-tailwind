@@ -56,20 +56,20 @@ class TransaksiDepoController extends Controller
         $file->move('distribusi_depo', $nama_file);
 
         // import data
-        $data = Excel::toCollection(new TransaksiDepoImport, public_path('/distribusi_depo/' . $nama_file));
-
-        $transaksi = TransaksiDepo::create([
-            'id_petugas' => Auth::user()->id,
-            'id_cluster' => $request->cluster_id,
-            'id_depo' => $request->depo_id,
-            'tanggal' => date('Y-m-d'),
-            'status' => '',
-        ]);
+        $data = Excel::toCollection(new TransaksiDepoImport, public_path('/distribusi_depo/' . $nama_file));        
 
         foreach ($data as $dat) {
             foreach ($dat as $d) {
                 $barang = Barang::where('nama', $d['item_name'])->first();                
-                if ($barang) {                    
+                if ($barang) {   
+                    $transaksi = TransaksiDepo::firstOrCreate([
+                        'id_petugas' => Auth::user()->id,
+                        'id_cluster' => $request->cluster_id,
+                        'id_depo' => $request->depo_id,
+                        'tanggal' => date('Y-m-d'),
+                        'status' => '',
+                    ]);
+
                     $data_detail = TransaksiDepoDetail::firstOrCreate([
                         'id_transaksi' => $transaksi->id,
                         'id_barang' => $barang->id,

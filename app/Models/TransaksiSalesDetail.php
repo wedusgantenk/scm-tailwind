@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TransaksiDepoDetail extends Model
+class TransaksiSalesDetail extends Model
 {
     use HasFactory;
-    protected $table = "transaksi_distribusi_depo_detail";    
+    protected $table = "transaksi_distribusi_sales_detail";    
     protected $fillable = [
         'id_transaksi',
         'id_barang',
@@ -18,10 +18,5 @@ class TransaksiDepoDetail extends Model
     public function barang()
     {
         return $this->belongsTo(Barang::class,'id_barang');
-    }
-
-    public function transaksi()
-    {
-        return $this->belongsTo(TransaksiSales::class,'id_transaksi', 'id');
     }
 }

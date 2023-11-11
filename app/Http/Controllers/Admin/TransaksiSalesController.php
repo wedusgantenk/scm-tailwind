@@ -3,9 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Imports\TransaksiSalesImport;
 use App\Models\Barang;
-use App\Models\JenisBarang;
+use App\Models\Depo;
+use App\Models\Sales;
+use App\Models\TransaksiDepo;
+use App\Models\TransaksiDepoDetail;
+use App\Models\TransaksiSales;
+use App\Models\TransaksiSalesDetail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TransaksiSalesController extends Controller
 {
@@ -16,81 +24,79 @@ class TransaksiSalesController extends Controller
 
     public function index()
     {
-        $data = Barang::all();
+        $data = TransaksiSales::all();
         return view('admin.transaksi.distribusi_sales.index', compact('data'));
     }
 
-    public function create()
+    public function detail($id)
     {
-        $jenis_barang = JenisBarang::all();
-        return view('admin.transaksi.distribusi_sales.create', compact('jenis_barang'));
+        $data = TransaksiSalesDetail::where('id_transaksi', $id)->get();
+        return view('admin.transaksi.distribusi_sales.detail', compact('data'));
     }
 
-    public function store(Request $request)
+    public function import()
     {
-        $request->validate(
-            [
-                'nama' => 'required|unique:barang',
-                'jenis_barang_id' => 'required|numeric',
-            ],
-            [
-                'nama.required' => 'Nama barang harus diisi',
-                'nama.unique' => 'barang sudah ada',
-                'jenis_barang_id.required' => 'Jenis barang harus dipilih',
-                'jenis_barang_id.numeric' => 'Jenis barang harus dipilih',
-            ]
-        );
-        Barang::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'id_jenis' => $request->jenis_barang_id,            
+        $depo = Depo::all();
+        $sales = Sales::all();
+        return view('admin.transaksi.distribusi_sales.import', compact('depo', 'sales'));
+    }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
         ]);
-        return redirect()->route('admin.transaksi.distribusi_sales')->with('success', 'barang telah ditambahkan');
-    }
 
-    public function edit($id)
-    {
-        $data = Barang::findorfail($id);
-        $jenis_barang = JenisBarang::all();
-        return view('admin.transaksi.distribusi_sales.edit', compact('data', 'jenis_barang'));
-    }
+        // menangkap file excel
+        $file = $request->file('file');
 
-    public function update(Request $request, $id)
-    {
-        $data = Barang::find($id);
-        $request->validate(
-            [
-                'nama' => 'required',
-                'jenis_barang_id' => 'required|numeric',
-            ],
-            [
-                'nama.required' => 'Nama barang harus diisi',
-                'jenis_barang_id.required' => 'Jenis barang harus dipilih',
-                'jenis_barang_id.numeric' => 'Jenis barang harus dipilih',
-            ]
-        );
-        if ($data->nama != $request->nama) {
-            $request->validate(
-                [
-                    'nama' => 'unique:barang',
-                ],
-                [
-                    'nama.unique' => 'nama barang sudah ada',
-                ]
-            );
+        // membuat nama file unik
+        $nama_file = rand() . "_" . $file->getClientOriginalName();
+
+        // upload ke folder file barang di dalam folder public
+        $file->move('distribusi_sales', $nama_file);
+
+        // import data
+        $data = Excel::toCollection(new TransaksiSalesImport, public_path('/distribusi_sales/' . $nama_file));
+
+
+
+        foreach ($data as $dat) {
+            foreach ($dat as $d) {
+                $barang = Barang::where('nama', $d['item_name'])->first();
+                if ($barang) {
+                    $id_depo = $request->depo_id;
+                    $kode_unik = $d['iccid'];
+                    
+                    $barang_depo = TransaksiDepo::whereHas('details', function ($query) use ($kode_unik) {
+                        $query->where('kode_unik', $kode_unik);
+                    })->where('id_depo', $id_depo)->exists();
+                    
+                    if ($barang_depo) {
+                        $transaksi = TransaksiSales::firstOrCreate([
+                            'id_petugas' => Auth::user()->id,
+                            'id_sales' => $request->sales_id,
+                            'id_depo' => $request->depo_id,
+                            'tanggal' => date('Y-m-d'),
+                            'status' => '',
+                        ]);
+
+                        $data_detail = TransaksiSalesDetail::firstOrCreate([
+                            'id_transaksi' => $transaksi->id,
+                            'id_barang' => $barang->id,
+                            'kode_unik' => $d['iccid'],
+                        ]);
+                    } else {
+                        // tidak ada barang di depo yang dipilih
+                    }
+                } else {
+                    // tidak ada barang
+                }
+            }
         }
-        $data->update([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'id_jenis' => $request->jenis_barang_id,
-        ]);
 
-        return redirect()->route('admin.transaksi.distribusi_sales')->with('success', 'barang telah diubah');
-    }
-
-    public function destroy($id)
-    {
-        Barang::find($id)->delete();
-        return redirect()->route('admin.transaksi.distribusi_sales')->with('success', 'barang telah dihapus');
+        // alihkan halaman kembali		
+        return redirect()->route('admin.transaksi.distribusi_sales')->with('success', 'barang masuk telah ditambahkan');
     }
 }

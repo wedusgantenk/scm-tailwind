@@ -31,4 +31,9 @@ class TransaksiDepo extends Model
     {
         return $this->belongsTo(Depo::class, 'id_depo');
     }
+
+    public function details()
+    {
+        return $this->hasMany(TransaksiDepoDetail::class, 'id_transaksi', 'id');
+    }
 }

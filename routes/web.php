@@ -74,11 +74,9 @@ Route::post('transaksi/distribusi_depo/import', [App\Http\Controllers\Admin\Tran
 Route::get('transaksi/distribusi_depo/detail/{id}', [App\Http\Controllers\Admin\TransaksiDepoController::class, 'detail'])->name('admin.transaksi.distribusi_depo.detail')->middleware(['checkRole:admin']);
 
 Route::get('transaksi/distribusi_sales', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'index'])->name('admin.transaksi.distribusi_sales')->middleware(['checkRole:admin']);
-Route::get('transaksi/distribusi_sales/create', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'create'])->name('admin.transaksi.distribusi_sales.create')->middleware(['checkRole:admin']);
-Route::post('transaksi/distribusi_sales/create', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'store'])->name('admin.transaksi.distribusi_sales.store')->middleware(['checkRole:admin']);
-Route::get('transaksi/distribusi_sales/edit/{id}', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'edit'])->name('admin.transaksi.distribusi_sales.edit')->middleware(['checkRole:admin']);
-Route::patch('transaksi/distribusi_sales/edit/{id}/update', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'update'])->name('admin.transaksi.distribusi_sales.update')->middleware(['checkRole:admin']);
-Route::get('transaksi/distribusi_sales/delete/{id}', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'destroy'])->name('admin.transaksi.distribusi_sales.delete')->middleware(['checkRole:admin']);
+Route::get('transaksi/distribusi_sales/import', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'import'])->name('admin.transaksi.distribusi_sales.import')->middleware(['checkRole:admin']);
+Route::post('transaksi/distribusi_sales/import', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'import_excel'])->name('admin.transaksi.distribusi_sales.import_excel')->middleware(['checkRole:admin']);
+Route::get('transaksi/distribusi_sales/detail/{id}', [App\Http\Controllers\Admin\TransaksiSalesController::class, 'detail'])->name('admin.transaksi.distribusi_sales.detail')->middleware(['checkRole:admin']);
 
 Route::get('jenisoutlet', [App\Http\Controllers\Admin\JenisOutletController::class, 'index'])->name('admin.jenis_outlet')->middleware(['checkRole:admin']);
 Route::get('jenisoutlet/create', [App\Http\Controllers\Admin\JenisOutletController::class, 'create'])->name('admin.jenis_outlet.create')->middleware(['checkRole:admin']);
