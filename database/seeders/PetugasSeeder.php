@@ -17,7 +17,7 @@ class PetugasSeeder extends Seeder
     public function run()
     {
         Petugas::create([
-            'username' => Str::random(10),        
+            'username' => 'admin',        
             'password' =>  bcrypt('12345678'),
             'hak_akses' => 'admin',
             'jenis' => '0',

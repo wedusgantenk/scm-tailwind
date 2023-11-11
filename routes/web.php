@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
+Route::get('/', [App\Http\Controllers\welcomeController::class, 'index'])->name('index');
+Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('index');
 
 Route::get('change/password', [App\Http\Controllers\Admin\SettingsController::class, 'updatePasswordForm'])
     ->name('update.password')
@@ -99,6 +100,13 @@ Route::post('petugas/create', [App\Http\Controllers\Admin\PetugasController::cla
 Route::get('petugas/edit/{id}', [App\Http\Controllers\Admin\PetugasController::class, 'edit'])->name('admin.petugas.edit')->middleware(['checkRole:admin']);
 Route::patch('petugas/edit/{id}/update', [App\Http\Controllers\Admin\PetugasController::class, 'update'])->name('admin.petugas.update')->middleware(['checkRole:admin']);
 Route::get('petugas/delete/{id}', [App\Http\Controllers\Admin\PetugasController::class, 'destroy'])->name('admin.petugas.delete')->middleware(['checkRole:admin']);
+
+Route::get('sales', [App\Http\Controllers\Admin\SalesController::class, 'index'])->name('admin.sales')->middleware(['checkRole:admin']);
+Route::get('sales/create', [App\Http\Controllers\Admin\SalesController::class, 'create'])->name('admin.sales.create')->middleware(['checkRole:admin']);
+Route::post('sales/create', [App\Http\Controllers\Admin\SalesController::class, 'store'])->name('admin.sales.store')->middleware(['checkRole:admin']);
+Route::get('sales/edit/{id}', [App\Http\Controllers\Admin\SalesController::class, 'edit'])->name('admin.sales.edit')->middleware(['checkRole:admin']);
+Route::patch('sales/edit/{id}/update', [App\Http\Controllers\Admin\SalesController::class, 'update'])->name('admin.sales.update')->middleware(['checkRole:admin']);
+Route::get('sales/delete/{id}', [App\Http\Controllers\Admin\SalesController::class, 'destroy'])->name('admin.sales.delete')->middleware(['checkRole:admin']);
 
 Route::get('barangmasuk', [App\Http\Controllers\Admin\BarangMasukController::class, 'index'])->name('admin.barang_masuk')->middleware(['checkRole:admin']);
 Route::get('barangmasuk/create', [App\Http\Controllers\Admin\BarangMasukController::class, 'create'])->name('admin.barang_masuk.create')->middleware(['checkRole:admin']);
