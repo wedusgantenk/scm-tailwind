@@ -10,7 +10,7 @@ class Depo extends Model
     use HasFactory;
     protected $table = "depo";
     protected $fillable = [
-        'id_warehouse',
+        'id_cluster',
         'nama',
         'alamat',             
     ];

@@ -44,7 +44,7 @@ Daftar Barang Masuk
                   <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Nomor DO</th>
                   <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Nomor PO</th>
                   <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Petugas</th>
-                  <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Aksi</th>
+                  {{-- <th class="font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xs border-b-solid tracking-none whitespace-nowrap">Aksi</th> --}}
                 </tr>
               </thead>
               <tbody class="px-6 py-3 font-semibold text-left text-xs border-spacing-4">
@@ -57,14 +57,14 @@ Daftar Barang Masuk
                   <td> {{ $d->no_po }} </td>
                   <td> {{ $d->petugas->username }} </td>
 
-                  <td>
+                  {{-- <td>
                     <a href="{{ route('admin.barang_masuk.edit', $d->id) }}" class="btn btn-success btn-xs"><i class="fa fa-pencil"></i></a>
                     <a href="{{ route('admin.barang_masuk.delete', $d->id) }}" class="btn btn-danger btn-xs" onclick="return confirm('Apakah yakin ingin menghapus cluster : {{ $d->nama }} ?');"><i class="fa fa-trash"></i></a>
-                  </td>
+                  </td> --}}
                 </tr>
                 @empty
                 <tr>
-                  <th colspan="3" class="text-center">Tidak ada data</th>
+                  <th colspan="6" class="text-center">Tidak ada data</th>
                 </tr>
                 @endforelse
               </tbody>

@@ -17,10 +17,10 @@ Tambah Depo
 
           <form action="{{ route('admin.depo.store') }}" method="POST" enctype="multipart/form-data" role="form">
             @csrf
-            <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Pilih Cluster</label>
+            <label class="mb-2 ml-1 font-bold text-xs text-slate-700" for="cluster_id">Pilih Cluster</label>
             <div class="mb-3">
               <select class="rounded-md text-sm form-control @error('cluster_id') is-invalid @enderror" name="cluster_id"
-                aria-describedby="clusterHelp" id="selectCluster" required>
+                aria-describedby="clusterHelp" id="cluster_id" required>
                 <option value="">-- Pilih --</option>
                 @foreach ($cluster as $cs)
                 <option value="{{ $cs->id }}">{{ $cs->nama }}</option>
