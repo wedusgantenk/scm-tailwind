@@ -9,6 +9,7 @@ class Sales extends Model
 {
     use HasFactory;
     protected $table = "sales";
+    
     protected $fillable = [
         'id_depo',        
         'nama',
@@ -17,6 +18,8 @@ class Sales extends Model
         'password',
         'status',
     ];
+
+    public $timestamps = false;
 
     public function depo()
     {

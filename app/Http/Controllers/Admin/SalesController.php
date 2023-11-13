@@ -35,26 +35,40 @@ class SalesController extends Controller
     {
         $request->validate(
             [
-                'username' => ['required', 'string', 'max:50'],                
-                'password' => ['required', 'string', 'min:5', 'confirmed'],
-                'role' => ['required'],
+                // 'username' => ['required', 'string', 'max:50'],                
+                // 'password' => ['required', 'string', 'min:5', 'confirmed'],
+                // 'role' => ['required'],
+                'nama' => ['required'],
+                'email' => ['required'],
+                'area' => ['required'],
+                'password' => ['required'],
+                'status' => ['required'],
+                'id_depo' => ['required'],
             ],
-            [
-                'username.required' => 'Nama lengkap harus diisi',
-                'username.string' => 'Nama lengkap harus diisi',
-                'username.max' => 'Nama lengkap maksimal 50 karakter',                
-                'password.required' => 'Password harus diisi',    
-                'password.string' => 'Password harus diisi',
-                'password.min' => 'Password minimal 5 karakter',
-                'password.confirmed' => 'Password tidak sama dengan confirm password',     
-                'role.required' => 'Hak akses harus diisi',                       
-            ]            
+            // [
+            //     'username.required' => 'Nama lengkap harus diisi',
+            //     'username.string' => 'Nama lengkap harus diisi',
+            //     'username.max' => 'Nama lengkap maksimal 50 karakter',                
+            //     'password.required' => 'Password harus diisi',    
+            //     'password.string' => 'Password harus diisi',
+            //     'password.min' => 'Password minimal 5 karakter',
+            //     'password.confirmed' => 'Password tidak sama dengan confirm password',     
+            //     'role.required' => 'Hak akses harus diisi',                       
+            // ]            
         );
         
         Sales::create([
-            'username' => $request->username,            
-            'hak_akses' => $request->role,        
-            'password'  => Hash::make($request->password),                
+            // 'username' => $request->username,            
+            // 'hak_akses' => $request->role,        
+            // 'password'  => Hash::make($request->password),        
+
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'area' => $request->area,
+                'password' => $request->password,
+                'status' => $request->status,
+                'id_depo' => $request->id_depo,
+    
         ]);        
 
         return redirect()->route('admin.sales')->with('success', 'User '.$request->name.' telah ditambahkan');
