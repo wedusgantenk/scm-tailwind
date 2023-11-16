@@ -17,6 +17,17 @@ Tambah Cluster
 
           <form action="{{ route('admin.cluster.store') }}" method="POST" enctype="multipart/form-data" role="form">
             @csrf
+            <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Kode Cluster</label>
+            <div class="mb-4">
+              <input type="text"
+                class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow"
+                id="inputCluster" placeholder="Masukkan kode cluster" aria-label="cluster"
+                aria-describedby="cluster-addon" autocomplete="off" value="{{ old('kode_cluster')}}" name="kode_cluster" required>
+              @error('kode_cluster')
+              <span id="cluster-addon" class="invalid-feedback" role="alert"></span>
+
+              @enderror
+            </div>
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Nama Cluster</label>
             <div class="mb-4">
               <input type="text"

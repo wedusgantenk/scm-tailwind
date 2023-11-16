@@ -11,6 +11,7 @@ class Cluster extends Model
     protected $table = "cluster";
     protected $fillable = [
         'id',
+        'kode_cluster',
         'nama',
         'alamat',
         'updated_at',
