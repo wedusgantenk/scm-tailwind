@@ -17,8 +17,6 @@
         <div class="flex flex-auto pl-6 py-2 col-md-4">
           <button class="py-1 px-2 mt-2 rounded-lg bg-slate-500 hover:bg-slate-700 text-white text-xs font-semibold drop-shadow-xl"  >
             <a href="{{ route('admin.cluster.create')}}">Tambah</a>
-            <button class="py-1 px-2 mt-2 rounded-lg bg-slate-500 hover:bg-slate-700 text-white text-xs font-semibold drop-shadow-xl"  >
-            <a href="{{ route('admin.cluster.export')}}">Tambah</a>
         </div>
         <div class="flex-auto px-0 pt-0 pb-2">
           <div class="p-0 overflow-x-auto">
