@@ -36,7 +36,7 @@ class BtsController extends Controller
         Bts::create([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
-            'lang' => $request->lang,
+            'lang' => $request->long,
             'lat' => $request->lat,            
         ]);
         return redirect()->route('admin.bts')->with('success', 'BTS telah ditambahkan');
@@ -70,7 +70,7 @@ class BtsController extends Controller
         $data->update([
             'nama' => $request->nama,
             'alamat' => $request->alamat,
-            'lang' => $request->lang,
+            'lang' => $request->long,
             'lat' => $request->lat,  
         ]);
 
