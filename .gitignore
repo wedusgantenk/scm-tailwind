@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/public/distribusi_depo
+/public/distribusi_sales
+/public/file_barang

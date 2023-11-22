@@ -8,7 +8,7 @@ use App\Models\Barang;
 use App\Models\JenisBarang;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
-use Rap2hpoutre\FastExcel\Facades\FastExcel;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class BarangController extends Controller
 {

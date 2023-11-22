@@ -33,6 +33,8 @@ class PetugasController extends Controller
                 'username' => ['required', 'string', 'max:50'],                
                 'password' => ['required', 'string', 'min:5', 'confirmed'],
                 'role' => ['required'],
+                'jenis' => ['required'],
+                'bagian' => ['required'],
             ],
             [
                 'username.required' => 'Nama lengkap harus diisi',
@@ -49,7 +51,9 @@ class PetugasController extends Controller
         Petugas::create([
             'username' => $request->username,            
             'hak_akses' => $request->role,        
-            'password'  => Hash::make($request->password),                
+            'password'  => Hash::make($request->password),
+            'jenis' => $request->jenis,
+            'bagian' => $request->bagian,                
         ]);        
 
         return redirect()->route('admin.petugas')->with('success', 'User '.$request->name.' telah ditambahkan');

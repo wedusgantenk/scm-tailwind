@@ -23,6 +23,8 @@ class Petugas extends Authenticatable implements JWTSubject
         'username',        
         'password',
         'hak_akses',
+        'jenis',
+        'bagian',
     ];
 
     /**

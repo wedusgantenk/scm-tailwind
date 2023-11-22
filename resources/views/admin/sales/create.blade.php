@@ -18,7 +18,7 @@ Tambah Sales
             @csrf
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Pilih Depo</label>
             <div class="mb-3">
-              <select class="rounded-md text-sm form-control @error('id_depo') is-invalid @enderror" name="id_depo" aria-describedby="depoHelp" id="selectDepo" required>
+              <select class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" name="id_depo" aria-describedby="depoHelp" id="selectDepo" required>
                 <option value="">-- Pilih --</option>
                 @foreach ($depo as $dp)
                 <option value="{{ $dp->id }}">{{ $dp->nama }}</option>

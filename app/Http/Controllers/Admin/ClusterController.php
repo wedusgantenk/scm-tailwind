@@ -102,14 +102,4 @@ class ClusterController extends Controller
             ];
         });
     }
-
-    public function import()
-    {
-        $clusters = (new FastExcel)->import('file.xlsx', function ($line) {
-            return Cluster::create([
-                'nama' => $line['nama'],
-                'alamat' => $line['alamat'],
-            ]);
-        });
-    }
 }
