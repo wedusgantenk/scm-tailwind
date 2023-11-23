@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('title')
-Cluster
+Barang
 @endsection
 
 @section('content')
@@ -59,9 +59,9 @@ Cluster
                     class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                     {{ $d->nama }} </td>
                   <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                    <a href="{{ route('admin.cluster.edit', $d->id) }}" class="mx-2 btn btn-success btn-xs"><i
+                    <a href="{{ route('admin.barang.edit', $d->id) }}" class="mx-2 btn btn-success btn-xs"><i
                         class="fas fa-edit fa-lg"></i></a>
-                    <a href="{{ route('admin.cluster.delete', $d->id) }}" class="mx-1 btn btn-danger btn-xs"
+                    <a href="{{ route('admin.barang.delete', $d->id) }}" class="mx-1 btn btn-danger btn-xs"
                       onclick="return confirm('Apakah yakin ingin menghapus cluster {{ $d->nama }} ?');"><i
                         class="fas fa-trash-alt fa-lg"></i></a>
                   </td>

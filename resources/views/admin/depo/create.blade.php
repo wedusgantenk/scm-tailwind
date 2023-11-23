@@ -14,12 +14,11 @@ Tambah Depo
           <h6 class="text-s font-bold">Tambah Depo</h6>
         </div>
         <div class="pb-6 pr-6 pl-6 flex-auto">
-
           <form action="{{ route('admin.depo.store') }}" method="POST" enctype="multipart/form-data" role="form">
             @csrf
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700" for="cluster_id">Pilih Cluster</label>
             <div class="mb-3">
-              <select class="rounded-md text-sm form-control @error('cluster_id') is-invalid @enderror" name="cluster_id"
+              <select class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" name="cluster_id"
                 aria-describedby="clusterHelp" id="cluster_id" required>
                 <option value="">-- Pilih --</option>
                 @foreach ($cluster as $cs)
@@ -40,7 +39,6 @@ Tambah Depo
                 autocomplete="off" value="{{ old('nama')}}" name="nama" required>
               @error('nama')
               <span id="depo-addon" class="invalid-feedback" role="alert"></span>
-
               @enderror
             </div>
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Alamat</label>
@@ -55,7 +53,6 @@ Tambah Depo
                 class="bg-slate-700 hover:bg-slate-500 text-white inline-block w-1/5 px-6 py-3 mt-6 mb-6 font-bold text-center text-csite uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-fuchsia-700 to-pink-400 hover:scale-102 hover:shadow-soft-xs active:opacity-85">Simpan</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>

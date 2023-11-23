@@ -74,6 +74,36 @@ class SalesController extends Controller
         return redirect()->route('admin.sales')->with('success', 'User '.$request->name.' telah ditambahkan');
     }
 
+    public function edit($id)
+    {
+        $data = Sales::findorfail($id);
+        $depo = Depo::all();
+        return view('admin.sales.edit', compact('data', 'depo'));
+
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = Sales::find($id);
+        $request->validate([
+                'nama' => ['required'],
+                'email' => ['required'],
+                'area' => ['required'],
+                'password' => ['required'],
+                'status' => ['required'],
+                'id_depo' => ['required'],
+            ]);
+            $data->update([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'area' => $request->area,
+                'password' => $request->password,
+                'status' => $request->status,
+                'id_depo' => $request->id_depo,
+            ]);
+            return redirect()->route('admin.sales')->with('success', 'sales telah diubah');
+    }
+
     public function destroy($id)
     {
         

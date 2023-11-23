@@ -11,6 +11,8 @@ class Outlet extends Model
     protected $table = "outlet";
     protected $fillable = [
         'id_bts',
+        'id_depo',
+        'id_jenis',
         'nama',              
     ];
 

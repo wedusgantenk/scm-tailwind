@@ -37,18 +37,22 @@ class BarangMasukController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|unique:barang',
-                'id_jenis' => 'required|numeric',
-                'fisik' => ['in:1,0']
-            ],
-            [
-                'nama.required' => 'Nama barang harus diisi',
-                'nama.unique' => 'barang sudah ada',
-                'id_jenis.required' => 'Jenis barang harus dipilih',
-                'id_jenis.numeric' => 'Jenis barang harus dipilih',
+                'id_produk' => 'required',
+                'id_petugas' => 'required',
+                'tanggal' => 'required',
+                'no_do' => 'required',
+                'no_po' => 'required',
+                'kode_cluster' => 'required',
             ]
         );
         BarangMasuk::create([
+            
+            'id_produk' => $request->id_produk,
+            'id_petugas' => $request->id_petugas,
+            'tanggal' => $request->tanggal,
+            'no_do' => $request->no_do,
+            'no_po' => $request->no_po,
+            'kode_cluster' => $request->kode_cluster,
             'nama' => $request->nama,
             'alamat' => $request->alamat,
             'id_jenis' => $request->id_jenis,
@@ -117,11 +121,11 @@ class BarangMasukController extends Controller
         $file = time() . '-Data Excell.xlsx';
         return (new FastExcel(BarangMasuk::all()))->download($file, function ($barangmasuk) {
             return [
-            'nama' => $barangmasuk->nama,
-            'alamat' => $barangmasuk->alamat,
-            'id_jenis' => $barangmasuk->id_jenis,
-            'fisik' => $barangmasuk->has('fisik'),
-            'keterangan' => $barangmasuk->keterangan,
+                'nama' => $barangmasuk->nama,
+                'alamat' => $barangmasuk->alamat,
+                'id_jenis' => $barangmasuk->id_jenis,
+                'fisik' => $barangmasuk->has('fisik'),
+                'keterangan' => $barangmasuk->keterangan,
             ];
         });
     }
@@ -137,13 +141,13 @@ class BarangMasukController extends Controller
         $file = $request->file('file');
 
         // membuat nama file unik
-        $nama_file = rand() ."_".$file->getClientOriginalName();
+        $nama_file = rand() . "_" . $file->getClientOriginalName();
 
         // upload ke folder file barang di dalam folder public
         $file->move('file_barang', $nama_file);
 
         // import data
-        $data = Excel::toCollection(new BarangMasukImport, public_path('/file_barang/' . $nama_file));        
+        $data = Excel::toCollection(new BarangMasukImport, public_path('/file_barang/' . $nama_file));
         // return response()->json(["data" => $data_barang]);
 
         foreach ($data as $dat) {
@@ -157,8 +161,8 @@ class BarangMasukController extends Controller
                     'fisik' => 1,
                 ]);
                 $data_detail_barang = DetailBarang::firstOrCreate([
-                    'id_barang'=>$data_barang['id'],
-                    'kode_unik'=>$d['iccid'],                    
+                    'id_barang' => $data_barang['id'],
+                    'kode_unik' => $d['iccid'],
                 ]);
                 $data_barang_masuk = BarangMasuk::firstOrCreate([
                     'id_produk' => $data_barang['id'],
@@ -167,12 +171,11 @@ class BarangMasukController extends Controller
                     'no_do' => $d['no_do'],
                     'no_po' => $d['no_po'],
                     'kode_cluster' => $kode_cluster
-                ]);                
+                ]);
             }
-        }    
+        }
 
         // alihkan halaman kembali		
         return redirect()->route('admin.barang_masuk')->with('success', 'barang masuk telah ditambahkan');
     }
-    
 }

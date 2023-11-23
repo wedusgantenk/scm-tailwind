@@ -54,14 +54,18 @@ Tambah Sales
             </div>
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Password</label>
             <div class="mb-4">
-              <input type="password" class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-depoite bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputPwd" placeholder="Masukkan Password" aria-label="sales" aria-describedby="sales-addon" autocomplete="off" value="{{ old('password')}}" name="password" required>
+              <input type="text" class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-depoite bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputPwd" placeholder="Masukkan Password" aria-label="sales" aria-describedby="sales-addon" autocomplete="off" value="{{ old('password')}}" name="password" required>
               @error('password')
               <span id="sales-addon" class="invalid-feedback" role="alert"></span>
               @enderror
             </div>
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Status</label>
             <div class="mb-4">
-              <input type="text" class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-depoite bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputStatus" placeholder="Masukkan area" aria-label="sales" aria-describedby="sales-addon" autocomplete="off" value="{{ old('status')}}" name="status" required>
+              <select class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-depoite bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputStatus" name="status" placeholder="Masukkan area" aria-label="sales" aria-describedby="sales-addon" required>
+                <option value="">-- Pilih --</option>
+                <option value="aktif">aktif</option>
+                <option value="nonaktif">tidak aktif</option>
+              </select>
               @error('status')
               <span id="sales-addon" class="invalid-feedback" role="alert"></span>
               @enderror
@@ -70,7 +74,6 @@ Tambah Sales
               <button type="submit" class="bg-slate-700 hover:bg-slate-500 text-white inline-block w-1/5 px-6 py-3 mt-6 mb-6 font-bold text-center text-depoite uppercase align-middle transition-all bg-transparent border-0 rounded-lg cursor-pointer shadow-soft-md bg-x-25 bg-150 leading-pro text-xs ease-soft-in tracking-tight-soft bg-gradient-to-tl from-fuchsia-700 to-pink-400 hover:scale-102 hover:shadow-soft-xs active:opacity-85">Simpan</button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
