@@ -21,6 +21,7 @@ return array(
     'App\\Http\\Controllers\\Admin\\JenisOutletController' => $baseDir . '/app/Http/Controllers/Admin/JenisOutletController.php',
     'App\\Http\\Controllers\\Admin\\OutletController' => $baseDir . '/app/Http/Controllers/Admin/OutletController.php',
     'App\\Http\\Controllers\\Admin\\PetugasController' => $baseDir . '/app/Http/Controllers/Admin/PetugasController.php',
+    'App\\Http\\Controllers\\Admin\\ProfilController' => $baseDir . '/app/Http/Controllers/Admin/ProfilController.php',
     'App\\Http\\Controllers\\Admin\\SalesController' => $baseDir . '/app/Http/Controllers/Admin/SalesController.php',
     'App\\Http\\Controllers\\Admin\\SettingsController' => $baseDir . '/app/Http/Controllers/Admin/SettingsController.php',
     'App\\Http\\Controllers\\Admin\\TransaksiDepoController' => $baseDir . '/app/Http/Controllers/Admin/TransaksiDepoController.php',

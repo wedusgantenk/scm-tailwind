@@ -29,9 +29,9 @@ class DetailBarangController extends Controller
     {
         $request->validate(
             [
-                'nama' => 'required|unique:barang',
-                'id_jenis' => 'required|numeric',
-                'fisik' => ['in:1,0']
+                'id_barang' => 'required|unique:barang',
+                'kode_unik' => 'required|numeric',
+                'status' => ['in:1,0']
             ],
             [
                 'nama.required' => 'Nama barang harus diisi',

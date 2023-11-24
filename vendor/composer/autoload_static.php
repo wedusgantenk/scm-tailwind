@@ -631,6 +631,7 @@ class ComposerStaticInit65e85f9f959c0b087110331754d451cf
         'App\\Http\\Controllers\\Admin\\JenisOutletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/JenisOutletController.php',
         'App\\Http\\Controllers\\Admin\\OutletController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/OutletController.php',
         'App\\Http\\Controllers\\Admin\\PetugasController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/PetugasController.php',
+        'App\\Http\\Controllers\\Admin\\ProfilController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/ProfilController.php',
         'App\\Http\\Controllers\\Admin\\SalesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SalesController.php',
         'App\\Http\\Controllers\\Admin\\SettingsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/SettingsController.php',
         'App\\Http\\Controllers\\Admin\\TransaksiDepoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/TransaksiDepoController.php',
