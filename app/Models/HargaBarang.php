@@ -18,11 +18,11 @@ class HargaBarang extends Model
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class, 'id_barang');
+        return $this->belongsTo(Barang::class, 'id_barang', 'id');
     }
     
-    public function jenis_outlet()
+    public function jenisOutlet()
     {
-        return $this->belongsTo(JenisOutlet::class, 'id_jenis_outlet');
+        return $this->belongsTo(JenisOutlet::class, 'id_jenis_outlet', 'id');
     }
 }

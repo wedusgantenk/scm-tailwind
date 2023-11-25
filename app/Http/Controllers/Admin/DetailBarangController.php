@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Barang;
 use App\Models\DetailBarang;
 use Illuminate\Http\Request;
 
@@ -15,37 +16,39 @@ class DetailBarangController extends Controller
 
     public function index()
     {
-        $data = DetailBarang::all();
+        $data = DetailBarang::with('barang')->get();
+        
         return view('admin.detail_barang.index', compact('data'));
     }
 
     public function create()
     {
-        $jenis_barang = DetailBarang::all();
-        return view('admin.detail_barang.create', compact('jenis_barang'));
+        $data = DetailBarang::all();
+        $nama_barang = Barang::all();
+        return view('admin.detail_barang.create', compact('data', 'nama_barang'));
     }
 
     public function store(Request $request)
     {
         $request->validate(
             [
-                'id_barang' => 'required|unique:barang',
+                'id_barang' => 'required|numeric',
                 'kode_unik' => 'required|numeric',
-                'status' => ['in:1,0']
+                // 'status' => ['in:1,0']
             ],
-            [
-                'nama.required' => 'Nama barang harus diisi',
-                'nama.unique' => 'barang sudah ada',
-                'id_jenis.required' => 'Jenis barang harus dipilih',
-                'id_jenis.numeric' => 'Jenis barang harus dipilih',
-            ]
+            // [
+            //     'nama.required' => 'Nama barang harus diisi',
+            //     'nama.unique' => 'barang sudah ada',
+            //     'id_jenis.required' => 'Jenis barang harus dipilih',
+            //     'id_jenis.numeric' => 'Jenis barang harus dipilih',
+            // ]
         );
         DetailBarang::create([
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'id_jenis' => $request->id_jenis,            
-            'fisik' => $request->has('fisik'),
-            'keterangan' => $request->keterangan,
+            'id_barang' => $request->id_barang,
+            'kode_unik' => $request->kode_unik,
+            // 'status' => $request->id_jenis,            
+            // 'fisik' => $request->has('fisik'),
+            // 'keterangan' => $request->keterangan,
         ]);
         return redirect()->route('admin.detail_barang')->with('success', 'barang telah ditambahkan');
     }
@@ -53,8 +56,8 @@ class DetailBarangController extends Controller
     public function edit($id)
     {
         $data = DetailBarang::findorfail($id);
-        $jenis_barang = DetailBarang::all();
-        return view('admin.detail_barang.edit', compact('data', 'jenis_barang'));
+        $nama_barang = Barang::all();
+        return view('admin.detail_barang.edit', compact('data', 'nama_barang'));
     }
 
     public function update(Request $request, $id)
@@ -62,32 +65,22 @@ class DetailBarangController extends Controller
         $data = DetailBarang::find($id);
         $request->validate(
             [
-                'nama' => 'required',
-                'id_jenis' => 'required|numeric',
-                'fisik' => ['in:1,0']
+                'id_barang' => 'required|numeric',
+                'kode_unik' => 'required|numeric',
+                // 'fisik' => ['in:1,0']
             ],
-            [
-                'nama.required' => 'Nama barang harus diisi',
-                'id_jenis.required' => 'Jenis barang harus dipilih',
-                'id_jenis.numeric' => 'Jenis barang harus dipilih',
-            ]
+            // [
+            //     'nama.required' => 'Nama barang harus diisi',
+            //     'id_jenis.required' => 'Jenis barang harus dipilih',
+            //     'id_jenis.numeric' => 'Jenis barang harus dipilih',
+            // ]
         );
-        if ($data->nama != $request->nama) {
-            $request->validate(
-                [
-                    'nama' => 'unique:barang',
-                ],
-                [
-                    'nama.unique' => 'nama barang sudah ada',
-                ]
-            );
-        }
+
+        $data = DetailBarang::findOrFail($id);
+        
         $data->update([           
-            'nama' => $request->nama,
-            'alamat' => $request->alamat,
-            'id_jenis' => $request->id_jenis,            
-            'fisik' => $request->has('fisik'),
-            'keterangan' => $request->keterangan,
+            'id_barang' => $request->id_barang,
+            'kode_unik' => $request->kode_unik,
         ]);
 
         return redirect()->route('admin.detail_barang')->with('success', 'barang telah diubah');
@@ -96,6 +89,6 @@ class DetailBarangController extends Controller
     public function destroy($id)
     {
         DetailBarang::find($id)->delete();
-        return redirect()->route('admin.detail_barang')->with('success', 'barang telah dihapus');
+        return redirect()->route('admin.detail_barang')->with('success', 'detail barang telah dihapus');
     }
 }

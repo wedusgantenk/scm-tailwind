@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('title')
-Edit Jenis Barang
+Edit Jenis Outlet
 @endsection
 
 @section('content')
@@ -10,15 +10,15 @@ Edit Jenis Barang
     <div class="flex-none w-full max-w-full px-3">
       <div class="relative flex flex-col min-w-0 mb-6 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div class="p-6 pb-0 mb-0 bg-white border-b-0 border-b-solid rounded-t-2xl border-b-transparent">
-          <h6 class="text-s font-bold">Edit Jenis Barang {{$data->nama}}</h6>
+          <h6 class="text-s font-bold">Edit Jenis Outlet {{$data->nama}}</h6>
         </div>
         <div class="pb-6 pr-6 pl-6 flex-auto">
-          <form action="{{route('admin.jenis_barang.update', $data->id)}}" method="post" enctype="multipart/form-data" role="form">
+          <form action="{{route('admin.jenis_outlet.update', $data->id)}}" method="post" enctype="multipart/form-data" role="form">
             @csrf
             @method('PATCH')
-            <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Jenis Barang</label>
+            <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Jenis Outlet</label>
             <div class="mb-4">
-              <input type="text" class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputjenisBarang" placeholder="Masukkan jenis barang" aria-label="cluster" aria-describedby="cluster-addon" autocomplete="off" value="{{ $data->nama }}" name="nama" required>
+              <input type="text" class="flex-auto w-1/4 focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 transition-all focus:border-fuchsia-300 focus:outline-none focus:transition-shadow" id="inputjenisOutlet" placeholder="Masukkan jenis barang" aria-label="cluster" aria-describedby="cluster-addon" autocomplete="off" value="{{ $data->nama }}" name="nama" required>
               @error('nama')
               <span id="cluster-addon" class="invalid-feedback" role="alert"></span>
               @enderror

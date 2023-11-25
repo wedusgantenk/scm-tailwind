@@ -17,8 +17,9 @@ class HargaBarangController extends Controller
 
     public function index()
     {
-        $data = HargaBarang::all();
+        $data = HargaBarang::with('barang', 'jenisOutlet')->get();
         return view('admin.harga_barang.index', compact('data'));
+        
     }
 
     public function create()
@@ -32,10 +33,10 @@ class HargaBarangController extends Controller
     {
         $request->validate(
             [
-                'harga' => 'required|numeric',
-                'barang_id' => 'required|numeric',
+                'id_barang' => 'required|numeric',
                 'tanggal' => 'required',
-                'jenis_outlet_id' => 'required|numeric',
+                'id_jenis_outlet' => 'required|numeric',
+                'harga' => 'required|numeric',
             ],
             [                
                 'harga.required' => 'Harga harus dipilih',
@@ -48,9 +49,9 @@ class HargaBarangController extends Controller
             ]
         );
         HargaBarang::create([
-            'id_barang' => $request->barang_id,
+            'id_barang' => $request->id_barang,
             'tanggal' => $request->tanggal,
-            'id_jenis_outlet' => $request->jenis_outlet_id,  
+            'id_jenis_outlet' => $request->id_jenis_outlet,  
             'harga' => $request->harga,          
         ]);
         return redirect()->route('admin.harga_barang')->with('success', 'Harga barang telah ditambahkan');
@@ -69,10 +70,10 @@ class HargaBarangController extends Controller
         $data = HargaBarang::find($id);
         $request->validate(
             [
-                'harga' => 'required|numeric',
-                'barang_id' => 'required|numeric',
+                'id_barang' => 'required|numeric',
                 'tanggal' => 'required',
-                'jenis_outlet_id' => 'required|numeric',
+                'id_jenis_outlet' => 'required|numeric',
+                'harga' => 'required|numeric',
             ],
             [                
                 'harga.required' => 'Harga harus dipilih',
@@ -85,9 +86,9 @@ class HargaBarangController extends Controller
             ]
         );        
         $data->update([
-            'id_barang' => $request->barang_id,
+            'id_barang' => $request->id_barang,
             'tanggal' => $request->tanggal,
-            'id_jenis_outlet' => $request->jenis_outlet_id,  
+            'id_jenis_outlet' => $request->id_jenis_outlet,  
             'harga' => $request->harga,  
         ]);
 
@@ -98,5 +99,6 @@ class HargaBarangController extends Controller
     {
         HargaBarang::find($id)->delete();
         return redirect()->route('admin.harga_barang')->with('success', 'Harga barang telah dihapus');
+        
     }
 }
