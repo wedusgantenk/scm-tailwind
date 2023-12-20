@@ -9,7 +9,7 @@
 
   <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
 
-  <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+  <div class="items-center block w-auto max-h-screen overflow-y-auto h-sidenav grow basis-full">
     <ul class="flex flex-col pl-0 mb-0">
       <li class="mt-0.5 w-full">
         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="{{route('index')}}">
@@ -20,7 +20,7 @@
         </a>
       </li>
 
-      <li class="mt-0.5 w-full">
+      <!-- <li class="mt-0.5 w-full">
         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors hover:bg-pink-500" href="{{ route('admin.cluster') }}">
           <div class="shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center hover:bg-pink-500 stroke-0 text-center xl:p-2.5">
             <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -39,7 +39,7 @@
           </div>
           <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Cluster</span>
         </a>
-      </li>
+      </li> -->
 
       <li class="mt-0.5 w-full">
         <a class="py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap px-4 transition-colors" href="{{ route('admin.depo')}}">
