@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
-Route::get('/', [App\Http\Controllers\welcomeController::class, 'index'])->name('index');
-Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
+Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard')->middleware(['auth']);
 Route::get('profil', [App\Http\Controllers\Admin\ProfilController::class, 'index'])->name('admin.profil')->middleware(['checkRole:admin']);
 
 Route::get('change/password', [App\Http\Controllers\Admin\SettingsController::class, 'updatePasswordForm'])
