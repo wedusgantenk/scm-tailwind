@@ -7,3 +7,5 @@
   <!-- main script file  -->
   <script src="{{asset('assets/js/soft-ui-dashboard-tailwind.js')}}" async></script>
   <!-- plugin for scrollbar  -->
+  
+  @yield('js-tambahan')
