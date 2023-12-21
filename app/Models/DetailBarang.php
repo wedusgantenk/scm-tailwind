@@ -8,15 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class DetailBarang extends Model
 {
     use HasFactory;
-    protected $table = "detail_barang";
+    protected $table = "harga_barang";
     protected $fillable = [
         'id_barang',
-        'kode_unik',
-        'status',        
+        'tanggal',
+        'id_jenis_outlet',
+        'harga'             
     ];
 
     public function barang()
     {
-        return $this->belongsTo(Barang::class,'id_barang', 'id');
+        return $this->belongsTo(Barang::class, 'id_barang', 'id');
+    }
+    
+    public function jenisOutlet()
+    {
+        return $this->belongsTo(JenisOutlet::class, 'id_jenis_outlet', 'id');
     }
 }

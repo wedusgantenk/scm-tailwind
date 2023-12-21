@@ -13,7 +13,7 @@ Edit Cluster
           <h6 class="text-s font-bold">Edit Barang {{$data->nama}}</h6>
         </div>
         <div class="pb-6 pr-6 pl-6 flex-auto">
-        <form id="barang" action="{{ route('admin.barang.update', $data->id) }}" method="POST" enctype="multipart/form-data" role="form">
+        <form id="barang" action="{{ route('admin.barang_masuk.update', $data->id) }}" method="POST" enctype="multipart/form-data" role="form">
             @csrf
             @method('PATCH')
             <label class="mb-2 ml-1 font-bold text-xs text-slate-700">Nama Barang</label>

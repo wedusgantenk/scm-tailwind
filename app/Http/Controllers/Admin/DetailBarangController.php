@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Barang;
 use App\Models\DetailBarang;
+use App\Models\JenisOutlet;
 use Illuminate\Http\Request;
 
 class DetailBarangController extends Controller
@@ -16,16 +17,16 @@ class DetailBarangController extends Controller
 
     public function index()
     {
-        $data = DetailBarang::with('barang')->get();
-        
+        $data = DetailBarang::with('barang', 'jenisOutlet')->get();
         return view('admin.detail_barang.index', compact('data'));
+        
     }
 
     public function create()
     {
-        $data = DetailBarang::all();
-        $nama_barang = Barang::all();
-        return view('admin.detail_barang.create', compact('data', 'nama_barang'));
+        $barang = Barang::all();
+        $jenis_outlet = JenisOutlet::all();
+        return view('admin.detail_barang.create', compact('jenis_outlet','barang'));
     }
 
     public function store(Request $request)
@@ -33,31 +34,35 @@ class DetailBarangController extends Controller
         $request->validate(
             [
                 'id_barang' => 'required|numeric',
-                'kode_unik' => 'required|numeric',
-                // 'status' => ['in:1,0']
+                'tanggal' => 'required',
+                'id_jenis_outlet' => 'required|numeric',
+                'detail' => 'required|numeric',
             ],
-            // [
-            //     'nama.required' => 'Nama barang harus diisi',
-            //     'nama.unique' => 'barang sudah ada',
-            //     'id_jenis.required' => 'Jenis barang harus dipilih',
-            //     'id_jenis.numeric' => 'Jenis barang harus dipilih',
-            // ]
+            [                
+                'detail.required' => 'Detail harus dipilih',
+                'detail.numeric' => 'Detail harus dipilih',
+                'barang_id.required' => 'Barang harus dipilih',
+                'barang_id.numeric' => 'Barang harus dipilih',
+                'tanggal.required' => 'Tanggal harus dipilih',
+                'jenis_outlet_id.required' => 'Jenis Outlet harus dipilih',
+                'jenis_outlet_id.numeric' => 'Jenis Outlet harus dipilih',
+            ]
         );
         DetailBarang::create([
             'id_barang' => $request->id_barang,
-            'kode_unik' => $request->kode_unik,
-            // 'status' => $request->id_jenis,            
-            // 'fisik' => $request->has('fisik'),
-            // 'keterangan' => $request->keterangan,
+            'tanggal' => $request->tanggal,
+            'id_jenis_outlet' => $request->id_jenis_outlet,  
+            'Detail' => $request->Detail,          
         ]);
-        return redirect()->route('admin.detail_barang')->with('success', 'barang telah ditambahkan');
+        return redirect()->route('admin.Detail_barang')->with('success', 'Detail barang telah ditambahkan');
     }
 
     public function edit($id)
     {
         $data = DetailBarang::findorfail($id);
-        $nama_barang = Barang::all();
-        return view('admin.detail_barang.edit', compact('data', 'nama_barang'));
+        $jenis_outlet = JenisOutlet::all();
+        $barang = Barang::all();
+        return view('admin.Detail_barang.edit', compact('data', 'jenis_outlet','barang'));
     }
 
     public function update(Request $request, $id)
@@ -66,29 +71,34 @@ class DetailBarangController extends Controller
         $request->validate(
             [
                 'id_barang' => 'required|numeric',
-                'kode_unik' => 'required|numeric',
-                // 'fisik' => ['in:1,0']
+                'tanggal' => 'required',
+                'id_jenis_outlet' => 'required|numeric',
+                'Detail' => 'required|numeric',
             ],
-            // [
-            //     'nama.required' => 'Nama barang harus diisi',
-            //     'id_jenis.required' => 'Jenis barang harus dipilih',
-            //     'id_jenis.numeric' => 'Jenis barang harus dipilih',
-            // ]
-        );
-
-        $data = DetailBarang::findOrFail($id);
-        
-        $data->update([           
+            [                
+                'Detail.required' => 'Detail harus dipilih',
+                'Detail.numeric' => 'Detail harus dipilih',
+                'barang_id.required' => 'Barang harus dipilih',
+                'barang_id.numeric' => 'Barang harus dipilih',
+                'tanggal.required' => 'Tanggal harus dipilih',
+                'jenis_outlet_id.required' => 'Jenis Outlet harus dipilih',
+                'jenis_outlet_id.numeric' => 'Jenis Outlet harus dipilih',
+            ]
+        );        
+        $data->update([
             'id_barang' => $request->id_barang,
-            'kode_unik' => $request->kode_unik,
+            'tanggal' => $request->tanggal,
+            'id_jenis_outlet' => $request->id_jenis_outlet,  
+            'Detail' => $request->Detail,  
         ]);
 
-        return redirect()->route('admin.detail_barang')->with('success', 'barang telah diubah');
+        return redirect()->route('admin.Detail_barang')->with('success', 'Detail barang telah diubah');
     }
 
     public function destroy($id)
     {
         DetailBarang::find($id)->delete();
-        return redirect()->route('admin.detail_barang')->with('success', 'detail barang telah dihapus');
+        return redirect()->route('admin.Detail_barang')->with('success', 'Detail barang telah dihapus');
+        
     }
 }

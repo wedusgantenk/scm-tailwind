@@ -24,9 +24,10 @@
               <thead class="align-bottom">
                 <tr>
                   <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nomor</th>
-                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama</th>
-                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Kode Unik</th>
-                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Status</th>
+                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Nama Barang</th>
+                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Tanggal</th>
+                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Jenis Outlet</th>
+                  <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">detail</th>
                   <th class="px-6 py-3 font-bold text-left uppercase align-middle bg-transparent border-b border-gray-200 shadow-none text-xxs border-b-solid tracking-none whitespace-nowrap text-slate-400 opacity-70">Aksi</th>
                 </tr>
               </thead>
@@ -35,17 +36,15 @@
                   <tr>                                
                     <td class="w-16 text-center text-sm p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $loop->iteration }}. </td>
                     <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $d->barang->nama }} </td>                                
-                    <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $d->kode_unik }} </td>                                
-                    <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
-                      {{ $d->status ? $d->status : 'NULL' }}
-                    </td>
-                                                 
+                    <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $d->tanggal }} </td>                                
+                    <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $d->jenisOutlet->nama }} </td>                                
+                    <td class="text-sm px-6 py-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent"> {{ $d->detail }} </td>                                
                     <td class="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
                       <a href="{{ route('admin.detail_barang.edit', $d->id) }}"
                         class="mx-2 btn btn-success btn-xs"><i class="fas fa-edit fa-lg"></i></a>
                       <a href="{{ route('admin.detail_barang.delete', $d->id) }}"
                         class="mx-1 btn btn-danger btn-xs"
-                        onclick="return confirm('Apakah yakin ingin menghapus detail_barang {{ $d->barang->nama }} dengan kode unik {{ $d->kode_unik }} ?');"><i
+                        onclick="return confirm('Apakah yakin ingin menghapus detail Barang {{ $d->nama }} ?');"><i
                         class="fas fa-trash-alt fa-lg"></i></a>                                    
                       </td>
                   </tr>         
