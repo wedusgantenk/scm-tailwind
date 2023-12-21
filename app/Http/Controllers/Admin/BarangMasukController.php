@@ -46,7 +46,7 @@ class BarangMasukController extends Controller
             ]
         );
         BarangMasuk::create([
-            
+
             'id_produk' => $request->id_produk,
             'id_petugas' => $request->id_petugas,
             'tanggal' => $request->tanggal,
@@ -121,11 +121,16 @@ class BarangMasukController extends Controller
         $file = time() . '-Data Excell.xlsx';
         return (new FastExcel(BarangMasuk::all()))->download($file, function ($barangmasuk) {
             return [
-                'nama' => $barangmasuk->nama,
-                'alamat' => $barangmasuk->alamat,
-                'id_jenis' => $barangmasuk->id_jenis,
-                'fisik' => $barangmasuk->has('fisik'),
-                'keterangan' => $barangmasuk->keterangan,
+                'id_produk' => $barangmasuk->id_produk,
+                'id_petugas' => $barangmasuk->id_petugas,
+                'tanggal' => $barangmasuk->tanggal,
+                'no_do' => $barangmasuk->no_do,
+                'no_po' => $barangmasuk->no_po,
+                'kode_cluster' => $barangmasuk->kode_cluster,
+                'id_jenis' => $barangmasuk->barang->id_jenis,
+                'nama' => $barangmasuk->barang->nama,
+                'keterangan' => $barangmasuk->barang->keterangan,
+                'fisik' => $barangmasuk->barang->fisik,
             ];
         });
     }
