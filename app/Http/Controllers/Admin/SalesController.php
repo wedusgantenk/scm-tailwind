@@ -18,8 +18,8 @@ class SalesController extends Controller
 
     public function index()
     {
-        $data = Sales::join('Depo', 'Sales.id_depo', '=', 'Depo.id')
-                ->select('Sales.*', 'Depo.nama as nama_depo')
+        $data = Sales::join('depo', 'sales.id_depo', '=', 'depo.id')
+        ->select('sales.*', 'depo.nama as nama_depo')
                 ->get();
 
     return view('admin.sales.index', compact('data'));
@@ -44,7 +44,7 @@ class SalesController extends Controller
                 'password' => ['required'],
                 'status' => ['required'],
                 'id_depo' => ['required'],
-            ],
+            ]
             // [
             //     'username.required' => 'Nama lengkap harus diisi',
             //     'username.string' => 'Nama lengkap harus diisi',

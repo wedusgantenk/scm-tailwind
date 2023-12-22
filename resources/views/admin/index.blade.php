@@ -114,9 +114,9 @@ Dashboard
           <div class="flex flex-wrap -mx-3">
             <div class="max-w-full px-3 lg:w-1/2 lg:flex-none">
               <div class="flex flex-col h-full">
-                <p class="pt-2 mb-1 font-semibold">Built by developers</p>
-                <h5 class="font-bold">Soft UI Dashboard</h5>
-                <p class="mb-12">From colors, cards, typography to complex elements, you will find the full documentation.</p>
+                <p class="pt-2 mb-1 font-semibold">Lorem ipsum dolor sit amet</p>
+                <h5 class="font-bold">Consectetur adipisicing elit.</h5>
+                <p class="mb-12">Repellendus assumenda sed libero magni! Consequuntur nam minima aliquam vitae est atque architecto voluptatem fuga reprehenderit nemo rerum, velit laudantium numquam voluptate.</p>
                 <a class="mt-auto mb-0 font-semibold leading-normal text-sm group text-slate-500" href="javascript:;">
                   Read More
                   <i class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
@@ -140,8 +140,8 @@ Dashboard
         <div class="relative h-full overflow-hidden bg-cover rounded-xl" style="background-image: url('../assets/img/ivancik.jpg')">
           <span class="absolute top-0 left-0 w-full h-full bg-center bg-cover bg-gradient-to-tl from-gray-900 to-slate-800 opacity-80"></span>
           <div class="relative z-10 flex flex-col flex-auto h-full p-4">
-            <h5 class="pt-2 mb-6 font-bold text-white">Work with the rockets</h5>
-            <p class="text-white">Wealth creation is an evolutionarily recent positive-sum game. It is all about who take the opportunity first.</p>
+            <h5 class="pt-2 mb-6 font-bold text-white">Lorem ipsum</h5>
+            <p class="text-white">dolor sit amet consectetur adipisicing elit.</p>
             <a class="mt-auto mb-0 font-semibold leading-normal text-white group text-sm" href="javascript:;">
               Read More
               <i class="fas fa-arrow-right ease-bounce text-sm group-hover:translate-x-1.25 ml-1 leading-normal transition-all duration-200"></i>
@@ -163,7 +163,7 @@ Dashboard
               <canvas id="chart-bars" height="170"></canvas>
             </div>
           </div>
-          <h6 class="mt-6 mb-0 ml-2">Active Users</h6>
+          <h6 class="mt-6 mb-0 ml-2">Lorem ipsum</h6>
           <p class="ml-2 leading-normal text-sm">(<span class="font-bold">+23%</span>) than last week</p>
           <div class="w-full px-6 mx-auto max-w-screen-2xl rounded-xl">
             <div class="flex flex-wrap mt-0 -mx-3">
@@ -720,27 +720,11 @@ Dashboard
             <script>
               document.write(new Date().getFullYear() + ",");
             </script>
-            made with <i class="fa fa-heart"></i> by
-            <a href="https://www.creative-tim.com" class="font-semibold text-slate-700" target="_blank">Creative Tim</a>
-            for a better web.
+            made with <i class="fa fa-heart"></i>
+            <a>in Purwokerto</a>
           </div>
         </div>
-        <div class="w-full max-w-full px-3 mt-0 shrink-0 lg:w-1/2 lg:flex-none">
-          <ul class="flex flex-wrap justify-center pl-0 mb-0 list-none lg:justify-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://creative-tim.com/blog" class="block px-4 pt-0 pb-1 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/license" class="block px-4 pt-0 pb-1 pr-0 font-normal transition-colors ease-soft-in-out text-sm text-slate-500" target="_blank">License</a>
-            </li>
-          </ul>
-        </div>
+       
       </div>
     </div>
   </footer>

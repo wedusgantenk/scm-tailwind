@@ -20,8 +20,8 @@ Profil
             </div>
             <div class="flex-none w-auto max-w-full px-3 my-auto">
                 <div class="h-full">
-                    <h5 class="mb-1">Alec Thompson</h5>
-                    <p class="mb-0 font-semibold leading-normal text-sm">CEO / Co-Founder</p>
+                    <h5 class="mb-1">{{ Auth::user()->username }}</h5>
+                    <p class="mb-0 font-semibold leading-normal text-sm">{{ Auth::user()->bagian }}</p>
                 </div>
             </div>
             <div class="w-full max-w-full px-3 mx-auto mt-4 sm:my-auto sm:mr-0 md:w-1/2 md:flex-none lg:w-4/12">
@@ -160,12 +160,12 @@ Profil
                     </div>
                 </div>
                 <div class="flex-auto p-4">
-                    <p class="leading-normal text-sm">Hi, I’m Alec Thompson, Decisions: If you can’t decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality).</p>
+                    <p class="leading-normal text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, veritatis explicabo. Itaque id recusandae dicta accusamus est! Quas optio voluptatum explicabo nemo atque. Laborum reiciendis eius aliquam dicta eos tenetur.</p>
                     <hr class="h-px my-6 bg-transparent bg-gradient-to-r from-transparent via-white to-transparent" />
                     <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                        <li class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong class="text-slate-700">Full Name:</strong> &nbsp; Alec M. Thompson</li>
-                        <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Mobile:</strong> &nbsp; (44) 123 1234 123</li>
-                        <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Email:</strong> &nbsp; alecthompson@mail.com</li>
+                        <li class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong class="text-slate-700">Full Name:</strong> {{ Auth::user()->username }}</li>
+                        <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Bagian:</strong> {{ Auth::user()->bagian }}</li>
+                        <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Email:</strong> {{ Auth::user()->ha_akses }}</li>
                         <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Location:</strong> &nbsp; USA</li>
                         <li class="relative block px-4 py-2 pb-0 pl-0 bg-white border-0 border-t-0 rounded-b-lg text-inherit">
                             <strong class="leading-normal text-sm text-slate-700">Social:</strong> &nbsp;
